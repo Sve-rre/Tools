@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibreringstest</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 15px; }
+        button { padding: 15px 30px; font-size: 16px; cursor: pointer; border-radius: 8px; border: 1px solid #ccc; background: #f0f0f0; }
+        button:active { background: #ddd; }
+    </style>
+</head>
+<body>
+
+    <button onclick="kortVibrering()">Kort støt</button>
+    <button onclick="mønsterVibrering()">SOS-mønster</button>
+    <button onclick="stoppVibrering()">Stopp vibrering</button>
+
+    <script>
+        // Sjekker om enheten/nettleseren støtter vibrering
+        const kanVibrere = "vibrate" in navigator;
+
+        function kortVibrering() {
+            if (kanVibrere) {
+                navigator.vibrate(100); // Vibrerer i 100 millisekunder
+            } else {
+                alert("Enheten din støtter ikke vibrering i nettleseren.");
+            }
+        }
+
+        function mønsterVibrering() {
+            if (kanVibrere) {
+                // SOS: [Vibrer, pause, vibrer, pause...]
+                navigator.vibrate([100, 100, 100, 100, 100, 300, 300, 100, 300, 100, 300, 300, 100, 100, 100, 100, 100]);
+            }
+        }
+
+        function stoppVibrering() {
+            if (kanVibrere) {
+                navigator.vibrate(0); // Stopper all pågående vibrering umiddelbart
+            }
+        }
+    </script>
+
+</body>
+</html>
