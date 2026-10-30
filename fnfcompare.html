@@ -16,15 +16,17 @@ Dadbattle Scrollspeed : 3 Notes : 700<br>
 
 let song1 = document.getElementById("song1")
 song1.textContent = "Scrollspeed : 1, Total notes : 32 XT : 1"
-let song1s = 32
-let song1n = 1
-xt1 = 1
+let song1s = 1
+let song1n = 32
+let song1t = 67
+let xt1 = 1
 
 let song2 = document.getElementById("song2")
 song2.textContent = "Scrollspeed : 1, Total notes : 32 XT : 1"
-let song2s = 32
-let song2n = 1
-xt2 = 1
+let song2s = 1
+let song2n = 32
+let song2t = 67
+let xt2 = 1
 
 let better = document.getElementById("better")
 better.textContent = "Song1 is 1x as hard as Song2"
@@ -33,7 +35,8 @@ let set1 = document.getElementById("set1")
 set1.onclick = function(){
     song1s = prompt("What scrollspeed")
     song1n = prompt("How many notes?")
-    xt1 = Math.floor(((song1s*song1n)/32)*100)/100
+    song1t = prompt("How long is the song in sec")
+    xt1 = Math.floor((((song1s*song1n)/song1t)/(32/67))*100)/100
     song1.textContent = "Scrollspeed : " + song1s + ", Total notes : " + song1n + " XT : " + xt1
 }
 
@@ -41,13 +44,14 @@ let set2 = document.getElementById("set2")
 set2.onclick = function(){
     song2s = prompt("What scrollspeed")
     song2n = prompt("How many notes?")
-    xt2 = Math.floor(((song2s*song2n)/32)*100)/100
+    song2t = prompt("How long is the song in sec")
+    xt2 = Math.floor((((song2s*song2n)/song2t)/(32/67))*100)/100
     song2.textContent = "Scrollspeed : " + song2s + ", Total notes : " + song2n + " XT : " + xt2
 }
 
 let promptB = document.getElementById("promptB")
 promptB.onclick = function(){
-    navigator.clipboard.writeText(prompt("Write song name and difficulity") + " scroll speed and total notes fnf, write like this scrollspeed, totalnotes in numbers don't type anything else")
+    navigator.clipboard.writeText(prompt("Write song name and difficulity") + " scroll speed, total notes and total sec in fnf, write like this scrollspeed, totalnotes in numbers don't type anything else")
 }
 
 function update(){
