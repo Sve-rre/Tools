@@ -1,0 +1,66 @@
+<h1>FNF comparison</h1>
+This comparison tells the difference between two levels by entering scrollspeed and total notes for each song.<br>
+NOTE : this comparison is focused on scrollspeed and total notes. Other factors don't matter, so it might be a little inacurate.<br>
+<br>
+Song1 : <button id="set1">Set song1</button> <span id="song1"></span><br>
+Song2 : <button id="set2">Set song2</button> <span id="song2"></span><br>
+<span id="better"></span>
+<br>
+<br>
+Example: sillybilly hard is 1.47x harder then dadbattle nightmare.<br>
+Sillybilly Scrollspeed : 3 Notes : 1032<br>
+Dadbattle Scrollspeed : 3 Notes : 700<br>
+<br>
+<button id="promptB">Google search prompt for song</button>
+<script>
+
+let song1 = document.getElementById("song1")
+song1.textContent = "Scrollspeed : 1, Total notes : 32 XT : 1"
+let song1s = 32
+let song1n = 1
+xt1 = 1
+
+let song2 = document.getElementById("song2")
+song2.textContent = "Scrollspeed : 1, Total notes : 32 XT : 1"
+let song2s = 32
+let song2n = 1
+xt2 = 1
+
+let better = document.getElementById("better")
+better.textContent = "Song1 is 1x as hard as Song2"
+
+let set1 = document.getElementById("set1")
+set1.onclick = function(){
+    song1s = prompt("What scrollspeed")
+    song1n = prompt("How many notes?")
+    xt1 = Math.floor(((song1s*song1n)/32)*100)/100
+    song1.textContent = "Scrollspeed : " + song1s + ", Total notes : " + song1n + " XT : " + xt1
+}
+
+let set2 = document.getElementById("set2")
+set2.onclick = function(){
+    song2s = prompt("What scrollspeed")
+    song2n = prompt("How many notes?")
+    xt2 = Math.floor(((song2s*song2n)/32)*100)/100
+    song2.textContent = "Scrollspeed : " + song2s + ", Total notes : " + song2n + " XT : " + xt2
+}
+
+let promptB = document.getElementById("promptB")
+promptB.onclick = function(){
+    navigator.clipboard.writeText(prompt("Write song name and difficulity") + " scroll speed and total notes fnf, write like this scrollspeed, totalnotes in numbers don't type anything else")
+}
+
+function update(){
+    if(xt2>xt1){
+        better.textContent = "Song2 is " + (Math.floor((xt2/xt1)*100))/100 + "x as hard as Song1"
+    } else {
+        if(xt1 > xt2){
+           better.textContent = "Song1 is " + (Math.floor((xt1/xt2)*100))/100 + "x as hard as Song2" 
+        } else {
+            better.textContent = "Those songs are equally as hard"
+        }
+    }
+    requestAnimationFrame(update)
+}
+update()
+</script>
